@@ -1,0 +1,45 @@
+/* Taastrup Air Protocol */
+
+#ifndef __TAP_H__
+
+// measurement types
+#define TAP_MT_SOMETHING   0x00
+#define TAP_MT_TEMPERATURE 0x01
+#define TAP_MT_HUMIDITY    0x02
+#define TAP_MT_PRESSURE    0x03
+#define TAP_MT_TEXT        0x04
+#define TAP_MT_ONEBYTE     0x05
+
+// datatypes
+#define TAP_DT_INT8           0x01
+#define TAP_DT_UINT8          0x02
+#define TAP_DT_INT32          0x03
+#define TAP_DT_UINT32         0x05
+#define TAP_DT_FIXED_COMMA32  0x06
+
+typedef union {
+  int8_t  signedByte;
+  uint8_t unsignedByte;
+  int32_t signedInt32;
+  uint32_t unsignedInt32;
+  char text[10];
+} tap_data_t;
+
+class TapMessage {
+ public:
+  uint8_t measurement_type;
+  uint8_t data_type;
+  tap_data_t data;
+  
+  void clear();
+  void setUnsignedByte( uint8_t measurement_type, uint8_t value );
+  int getSize();
+
+};
+
+
+
+
+#define __TAP_H__
+#endif
+

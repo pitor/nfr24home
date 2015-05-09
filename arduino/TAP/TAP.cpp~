@@ -1,0 +1,22 @@
+#if (ARDUINO >= 100)
+ #include <Arduino.h> // capital A so it is error prone on case-sensitive filesystems
+#else
+ #include <WProgram.h>
+#endif
+
+#include "TAP.h"
+
+void TapMessage::clear() {
+  memset(this, 0, sizeof(this));
+}
+
+void TapMessage::setUnsignedByte( uint8_t measurement_type, uint8_t value ) {
+  this->clear();
+  this->measurement_type   = measurement_type;
+  this->data_type         = TAP_DT_UINT8;
+  this->data.unsignedByte = value;
+}
+
+int TapMessage::getSize() {
+  return sizeof( this );
+}
