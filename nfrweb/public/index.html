@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="rkvApp">
+  <head>
+    <title>NFR</title>
+    <link rel='stylesheet' href='/b/bootstrap/dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/b/angularjs/angular.js"></script>
+    <script type="text/javascript" src="/b/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/js/rkvapp.js"></script>
+    <script type="text/javascript" src="/js/services/rpc.js"></script>
+    <script type="text/javascript" src="/js/controllers/sensors.js"></script>
+    <script type="text/javascript" src="/js/routes.js"></script>
+
+  </head>
+  <body>
+    <div class="container-fluid topbar">
+      <div class="row">
+	<div class="col-lg-12">
+	  <h1>Rødkælkedata</h1>
+	</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div ng-view></div>
+    </div>
+
+  </body>
+</html>
