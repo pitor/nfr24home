@@ -1,16 +1,18 @@
 /* This Air Protocol */
-
 #ifndef __TAP_H__
 
-// measurement types
+// package types
 #define TAP_PT_UNSPECIFIED 0x00
 #define TAP_PT_TEMPERATURE 0x01
 #define TAP_PT_HUMIDITY    0x02
 #define TAP_PT_PRESSURE    0x03
 #define TAP_PT_TEXT        0x04
 #define TAP_PT_ONEBYTE     0x05
-#define TAP_PT_COMMAND     0x06
 
+// commands
+#define TAP_PT_CMD_PING            0x80
+#define TAP_PT_CMD_REQUEST_DATA    0x81
+#define TAP_PT_CMD_DEVICE_SPECIFIC 0x82
 
 // datatypes
 #define TAP_DT_INT8           0x01
@@ -23,8 +25,6 @@
 #define TAP_DT_FLOAT64        0x08
 #define TAP_DT_FIXED_COMMA32  0x09
 #define TAP_DT_TEXT           0x0a
-
-#define TAP_CMD_REQUEST_DATA 0x01;
 
 typedef union {
   int8_t  signedInt8;
@@ -39,10 +39,7 @@ typedef union {
 
 
 typedef union {
-  struct {
-    uint8_t command_id;
-    char command_data[9];
-  } command_contents;
+    char command_data[10];
   struct  {
     uint8_t data_type;
     tap_data_t data; 
@@ -56,13 +53,15 @@ public:
   tap_package_contents_t package_contents;
   
   void clear();
-  void setUnsignedInt8  ( uint8_t node_id, uint8_t measurement_type, uint8_t value );
-  void setSignedInt8    ( uint8_t node_id, uint8_t measurement_type, int8_t value );
-  void setUnsignedInt16 ( uint8_t node_id, uint8_t measurement_type, uint16_t value );
-  void setSignedInt16   ( uint8_t node_id, uint8_t measurement_type, int16_t value );
-  void setUnsignedInt32 ( uint8_t node_id, uint8_t measurement_type, uint32_t value );
-  void setSignedInt32   ( uint8_t node_id, uint8_t measurement_type, int32_t value );
-  uint8_t getCommandId();
+  void setUnsignedInt8  ( uint8_t node_id, uint8_t package_type, uint8_t value );
+  void setSignedInt8    ( uint8_t node_id, uint8_t package_type, int8_t value );
+  void setUnsignedInt16 ( uint8_t node_id, uint8_t package_type, uint16_t value );
+  void setSignedInt16   ( uint8_t node_id, uint8_t package_type, int16_t value );
+  void setUnsignedInt32 ( uint8_t node_id, uint8_t package_type, uint32_t value );
+  void setSignedInt32   ( uint8_t node_id, uint8_t package_type, int32_t value );
+  void setCommand       ( uint8_t node_id, uint8_t package_type, char * command_data, uint8_t command_data_length );
+
+  int parse( char * buffer, uint8_t buffer_length);
 
   uint8_t getSize();
  private:
