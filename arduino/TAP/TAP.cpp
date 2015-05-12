@@ -65,7 +65,7 @@ void TapMessage::setSignedInt32( uint8_t node_id, uint8_t package_type, int32_t 
 }
 
 
-void setCommand( uint8_t node_id, uint8_t package_type, char * command_data, uint8_t command_data_length ) {
+void TapMessage::setCommand( uint8_t node_id, uint8_t package_type, char * command_data, uint8_t command_data_length ) {
   this->clear();
   this->node_id = node_id;
   this->package_type   = package_type;
@@ -73,8 +73,8 @@ void setCommand( uint8_t node_id, uint8_t package_type, char * command_data, uin
 }
 
 uint8_t TapMessage::getSize() {
-  if(this->package_type == TAP_PT_COMMAND) {
-    return 2 + sizeof( this->package_contents.command_contents);
+  if(this->package_type >= TAP_PT_CMD_PING) {
+    return 2 + this->size;
   }
   return 3 + this->size;
 }

@@ -48,8 +48,8 @@ typedef union {
 
 class TapMessage {
 public:
-  uint8_t node_id      = 0;
-  uint8_t package_type = TAP_PT_UNSPECIFIED;
+  uint8_t node_id;
+  uint8_t package_type;
   tap_package_contents_t package_contents;
   
   void clear();
@@ -65,7 +65,7 @@ public:
 
   uint8_t getSize();
  private:
-  uint8_t size = 0;
+  uint8_t size;
 
 };
 
