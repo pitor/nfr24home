@@ -10,7 +10,7 @@ void TapMessage::clear() {
   memset(this, 0, sizeof(this));
 }
 
-void TapMessage::setUnsignedInt8( uint8_t node_id, uint8_t package_type, uint8_t value ) {
+void TapMessage::setUnsignedInt8( uint8_t node_id, tap_package_type_enum package_type, uint8_t value ) {
   this->clear();
   this->node_id       = node_id;
   this->package_type  = package_type;
@@ -19,7 +19,7 @@ void TapMessage::setUnsignedInt8( uint8_t node_id, uint8_t package_type, uint8_t
   this->size = sizeof( value );
 }
 
-void TapMessage::setSignedInt8( uint8_t node_id, uint8_t package_type, int8_t value ) {
+void TapMessage::setSignedInt8( uint8_t node_id, tap_package_type_enum package_type, int8_t value ) {
   this->clear();
   this->node_id           = node_id;
   this->package_type    = package_type;
@@ -28,7 +28,7 @@ void TapMessage::setSignedInt8( uint8_t node_id, uint8_t package_type, int8_t va
   this->size = sizeof( value );
 }
 
-void TapMessage::setUnsignedInt16( uint8_t node_id, uint8_t package_type, uint16_t value ) {
+void TapMessage::setUnsignedInt16( uint8_t node_id, tap_package_type_enum package_type, uint16_t value ) {
   this->clear();
   this->node_id = node_id;
   this->package_type   = package_type;
@@ -37,7 +37,7 @@ void TapMessage::setUnsignedInt16( uint8_t node_id, uint8_t package_type, uint16
   this->size = sizeof( value );
 }
 
-void TapMessage::setSignedInt16( uint8_t node_id, uint8_t package_type, int16_t value ) {
+void TapMessage::setSignedInt16( uint8_t node_id, tap_package_type_enum package_type, int16_t value ) {
   this->clear();
   this->node_id = node_id;
   this->package_type = package_type;
@@ -46,7 +46,7 @@ void TapMessage::setSignedInt16( uint8_t node_id, uint8_t package_type, int16_t 
   this->size = sizeof( value );
 }
 
-void TapMessage::setUnsignedInt32( uint8_t node_id, uint8_t package_type, uint32_t value ) {
+void TapMessage::setUnsignedInt32( uint8_t node_id, tap_package_type_enum package_type, uint32_t value ) {
   this->clear();
   this->node_id = node_id;
   this->package_type       = package_type;
@@ -55,7 +55,7 @@ void TapMessage::setUnsignedInt32( uint8_t node_id, uint8_t package_type, uint32
   this->size = sizeof( value );
 }
 
-void TapMessage::setSignedInt32( uint8_t node_id, uint8_t package_type, int32_t value ) {
+void TapMessage::setSignedInt32( uint8_t node_id, tap_package_type_enum package_type, int32_t value ) {
   this->clear();
   this->node_id = node_id;
   this->package_type   = package_type;
@@ -65,7 +65,7 @@ void TapMessage::setSignedInt32( uint8_t node_id, uint8_t package_type, int32_t 
 }
 
 
-void TapMessage::setCommand( uint8_t node_id, uint8_t package_type, char * command_data, uint8_t command_data_length ) {
+void TapMessage::setCommand( uint8_t node_id, tap_package_type_enum package_type, char * command_data, uint8_t command_data_length ) {
   this->clear();
   this->node_id = node_id;
   this->package_type   = package_type;
